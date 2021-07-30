@@ -1,9 +1,10 @@
 ﻿using System.Globalization;
+using System.Runtime.InteropServices;
 using DvsTesting.SimulationLogic;
 
 namespace DvsTesting.TestingLogic
 {
-    public static class EngineTestingStand
+    public static class EngineStand
     {
         
         private static int _lastTestDuration;
@@ -16,18 +17,25 @@ namespace DvsTesting.TestingLogic
 
         public static void Release()
             => EnclosedEngine = null;
+
+        private static bool IsOverheat
+            => (EnclosedEngine.Temperature >= EnclosedEngine.OverheatTemperature);
         
         public static void PerformNewTest()
         {
+            if (EnclosedEngine == null)
+            {
+                throw new ExternalException();//Хз какой именно здесь эксепшн кидать
+            }
+            
             _lastTestDuration = 0;
             
             EnclosedEngine.Reset();
-
             EnclosedEngine.Start();
             
-            while (EnclosedEngine.Temperature < EnclosedEngine.OverheatTemperature)
+            while (!IsOverheat)
             {
-                EnclosedEngine.Work(EnvironmentState.Temperature);
+                EnclosedEngine.Update();
                 _lastTestDuration++;
             }
             

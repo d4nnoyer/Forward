@@ -45,11 +45,12 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimulationLogic\Engine.cs" />
+    <Compile Include="SimulationLogic\EngineConfig.cs" />
     <Compile Include="SimulationLogic\EnvironmentState.cs" />
     <Compile Include="SimulationLogic\IEngine.cs" />
-    <Compile Include="SimulationLogic\InternalCombustionEngine.cs" />
-    <Compile Include="SimulationLogic\PiecewiceLinearRelation.cs" />
+    <Compile Include="SimulationLogic\Interpolation.cs" />
     <Compile Include="TestingLogic\EngineStand.cs" />
+    <Compile Include="TestingLogic\InternalCombustionEngine.cs" />
     <Compile Include="UserInterfaceLogic\Program.cs" />
     <Compile Include="UserInterfaceLogic\EngineStandInterface.cs" />
   </ItemGroup>
