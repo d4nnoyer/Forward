@@ -6,12 +6,7 @@ namespace DvsTesting.SimulationLogic
 {
     public abstract class Engine : IEngine
     {
-        protected bool IsWorking
-        {
-            get;
-            set;
-        }
-        
+
         protected double Volution;
 
         public double Temperature
@@ -19,6 +14,13 @@ namespace DvsTesting.SimulationLogic
             get;
             protected set;
         }
+        
+        protected bool IsWorking
+        {
+            get;
+            set;
+        }
+
          
         public double Momentum 
             => PiecewiseLinearRelation(Volution, EngineInfo.MomentumByVolutionRelations);

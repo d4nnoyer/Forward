@@ -7,22 +7,31 @@ namespace DvsTesting.TestingLogic
     {
         
         private static int _lastTestDuration;
+
+        public static Engine EnclosedEngine
+        {
+            get;
+            set;
+        }
+
+        public static void Release()
+            => EnclosedEngine = null;
         
-        public static void PerformNewTest(Engine engine, double envTemperature)
+        public static void PerformNewTest()
         {
             _lastTestDuration = 0;
             
-            engine.Reset();
+            EnclosedEngine.Reset();
 
-            engine.Start();
+            EnclosedEngine.Start();
             
-            while (engine.Temperature < engine.OverheatTemperature)
+            while (EnclosedEngine.Temperature < EnclosedEngine.OverheatTemperature)
             {
-                engine.Work(envTemperature);
+                EnclosedEngine.Work(EnvironmentState.Temperature);
                 _lastTestDuration++;
             }
             
-            engine.Stop();
+            EnclosedEngine.Stop();
         }
         
 

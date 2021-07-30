@@ -8,12 +8,14 @@ namespace DvsTesting.UserInterfaceLogic
     {
         static void Main()
         {
-            InternalCombustionEngine eng = new InternalCombustionEngine(10, 110, 0.1, 0.01, 0.0001);
+            EngineTestingStand.EnclosedEngine = new InternalCombustionEngine(10, 110, 0.1, 0.01, 0.0001);
             
-            EngineTestingStand.PerformNewTest(eng, 23);
+            EngineStandInterface.AskForEnvTemperature();
+            EngineTestingStand.PerformNewTest();
             Console.WriteLine(EngineTestingStand.LastTestDuration);
             
-            EngineTestingStand.PerformNewTest(eng, 36);
+            
+            EngineTestingStand.PerformNewTest();
             Console.WriteLine(EngineTestingStand.LastTestDuration);
 
             Console.WriteLine("Press any");

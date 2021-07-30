@@ -49,8 +49,9 @@
     <Compile Include="SimulationLogic\IEngine.cs" />
     <Compile Include="SimulationLogic\InternalCombustionEngine.cs" />
     <Compile Include="SimulationLogic\PiecewiceLinearRelation.cs" />
-    <Compile Include="TestingLogic\EngineTestingStand.cs" />
+    <Compile Include="TestingLogic\EngineStand.cs" />
     <Compile Include="UserInterfaceLogic\Program.cs" />
+    <Compile Include="UserInterfaceLogic\EngineStandInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
