@@ -12,7 +12,7 @@ namespace DvsTesting.TestingLogic
         {
             _lastTestDuration = 0;
             
-            engine.Reset(envTemperature);
+            engine.Reset();
 
             engine.Start();
             

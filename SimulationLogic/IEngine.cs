@@ -17,6 +17,6 @@
         /// охлаждение до температуры окружающей среды и т.д.
         /// </summary>
         /// <param name="environmentTemperature"></param>
-        void Reset(double environmentTemperature);
+        void Reset();
     }
 }

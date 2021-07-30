@@ -2,11 +2,11 @@
 using DvsTesting.SimulationLogic;
 using DvsTesting.TestingLogic;
 
-namespace DvsTesting
+namespace DvsTesting.UserInterfaceLogic
 {
     static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             InternalCombustionEngine eng = new InternalCombustionEngine(10, 110, 0.1, 0.01, 0.0001);
             

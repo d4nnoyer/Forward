@@ -6,7 +6,11 @@ namespace DvsTesting.SimulationLogic
 {
     public abstract class Engine : IEngine
     {
-        protected bool IsWorking;
+        protected bool IsWorking
+        {
+            get;
+            set;
+        }
         
         protected double Volution;
 
@@ -19,7 +23,7 @@ namespace DvsTesting.SimulationLogic
         public double Momentum 
             => PiecewiseLinearRelation(Volution, EngineInfo.MomentumByVolutionRelations);
          
-        public double NoLoadAcceleration 
+        public double AccelerationWithNoLoad 
             => Momentum/EngineInfo.Inertia;
 
         public double OverheatTemperature
@@ -50,7 +54,7 @@ namespace DvsTesting.SimulationLogic
         
         //Ускорение вращения коленвала
         public void VolutionIncreasePerSecond ()
-            => Volution += NoLoadAcceleration;
+            => Volution += AccelerationWithNoLoad;
 
         //Работа двигателя, при которой ускоряется коленвал и увеличивается температура
         public void Work(double envT)
@@ -62,9 +66,9 @@ namespace DvsTesting.SimulationLogic
             }
         }
 
-        public void Reset(double environmentTemperature)
+        public void Reset()
         {
-            Temperature = environmentTemperature;
+            Temperature = EnvironmentState.Temperature;
             Volution = 0;
         }
         

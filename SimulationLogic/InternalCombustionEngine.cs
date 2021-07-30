@@ -26,13 +26,13 @@ namespace DvsTesting.SimulationLogic
 
         public new void Reset(double environmentTemperature)
         {
-            Temperature = environmentTemperature;
-            Volution = 0;
+            // Temperature = environmentTemperature;
+            // Volution = 0;
         }
 
         public new void Start()
         {
-            IsWorking = true;
+            // IsWorking = true;
         }
 
         public new void Stop()

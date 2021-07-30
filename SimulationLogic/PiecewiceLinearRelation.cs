@@ -1,4 +1,4 @@
-﻿namespace DvsTesting
+﻿namespace DvsTesting.SimulationLogic
 {
     public class PiecewiceLinearRelation
     {
