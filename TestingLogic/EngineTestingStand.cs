@@ -1,21 +1,28 @@
 ﻿using System.Globalization;
+using DvsTesting.SimulationLogic;
 
-namespace DvsTesting
+namespace DvsTesting.TestingLogic
 {
     public static class EngineTestingStand
     {
         
         private static int _lastTestDuration;
         
-        public static void StartNewTest(Engine engine, double envTemperature)
+        public static void PerformNewTest(Engine engine, double envTemperature)
         {
             _lastTestDuration = 0;
+            
             engine.Reset(envTemperature);
-            while (!engine.IsOverheat)
+
+            engine.Start();
+            
+            while (engine.Temperature < engine.OverheatTemperature)
             {
                 engine.Work(envTemperature);
                 _lastTestDuration++;
             }
+            
+            engine.Stop();
         }
         
 
