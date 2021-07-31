@@ -45,7 +45,7 @@ namespace DvsTesting.UserInterface
         {
             CheckInEngineSet();
 
-            _controllingStand.PrintEngineConfig();
+            Console.WriteLine(_controllingStand.EngineConfig());
         }
 
         public static void RunOverheatTest()
@@ -67,7 +67,7 @@ namespace DvsTesting.UserInterface
             {
                 Console.WriteLine($"Двигатель прекратил нагрев на отметке {_controllingStand.MaxReachedTemperature} градусов Цельсия" +
                                   $" спустя {_controllingStand.LastTestDuration} секунд после начала теста." +
-                                  $"\nТемпература перегрева не достигнута при текущих условиях среды и конфигурации и состоянии двигателя. ");
+                                  $"\nТемпература перегрева не достигнута при текущих условиях среды и конфигурации двигателя. ");
             }
         }
     }

@@ -77,14 +77,12 @@ namespace DvsTesting.Testing
             => Math.Abs(_enclosedEngine.Temperature - _previousEngineTemperature);
 
         private bool IsTemperatureIncreasing
-            => (dT >= 0.001);
+            => (dT >= 0.01);
         
         public  string LastTestDuration 
             => _lastTestDuration.ToString(CultureInfo.CurrentCulture);
 
-        public void PrintEngineConfig()
-        {
-            Console.WriteLine(_enclosedEngine);
-        }
+        public string EngineConfig() 
+            => _enclosedEngine.ToString();
     }
 }
