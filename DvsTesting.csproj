@@ -51,6 +51,7 @@
     <Compile Include="Simulation\InternalCombustionEngine.cs" />
     <Compile Include="Simulation\Interpolation.cs" />
     <Compile Include="Testing\EngineStand.cs" />
+    <Compile Include="Testing\IEngineStand.cs" />
     <Compile Include="UserInterface\Program.cs" />
     <Compile Include="UserInterface\EngineStandInterface.cs" />
   </ItemGroup>

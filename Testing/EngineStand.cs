@@ -4,46 +4,47 @@ using DvsTesting.Simulation;
 
 namespace DvsTesting.Testing
 {
-    public static class EngineStand
+    public class EngineStand : IEngineStand
     {
         
-        private static int _lastTestDuration;
+        private int _lastTestDuration;
 
-        public static Engine EnclosedEngine
-        {
-            get;
-            set;
-        }
+        private static Engine _enclosedEngine;
 
-        public static void Release()
-            => EnclosedEngine = null;
+        public  void Release()
+            => _enclosedEngine = null;
 
-        private static bool IsOverheat
-            => (EnclosedEngine.Temperature >= EnclosedEngine.OverheatTemperature);
+        public void Enclose(Engine engine)
+            => _enclosedEngine = engine;
+
+
         
-        public static void PerformNewTest()
+        public  void OverheatTest()
         {
-            if (EnclosedEngine == null)
+            if (_enclosedEngine == null)
             {
-                throw new ExternalException();//Хз какой именно здесь эксепшн кидать
+                throw new ExternalException();
             }
             
             _lastTestDuration = 0;
             
-            EnclosedEngine.Reset();
-            EnclosedEngine.Start();
+            _enclosedEngine.Reset();
+            _enclosedEngine.Start();
             
             while (!IsOverheat)
             {
-                EnclosedEngine.Update();
+                _enclosedEngine.Update();
                 _lastTestDuration++;
             }
             
-            EnclosedEngine.Stop();
+            _enclosedEngine.Stop();
         }
         
-
-        public static string LastTestDuration 
+        private  bool IsOverheat
+            => (_enclosedEngine.Temperature >= _enclosedEngine.OverheatTemperature);
+        
+        public  string LastTestDuration 
             => _lastTestDuration.ToString(CultureInfo.CurrentCulture);
+
     }
 }
