@@ -5,11 +5,11 @@ namespace DvsTesting.Simulation
 {
     public class Interpolation
     {
-        private readonly List<(double Y, double X)> _points;
+        public readonly List<(double Y, double X)> Points;
         
         public Interpolation(List<(double, double)> points)
         {
-            _points = points;
+            Points = points;
         }
 
         /// <summary>
@@ -19,25 +19,20 @@ namespace DvsTesting.Simulation
         /// <returns></returns>
         public double GetPiecewiceLinearRelation(double value)
         {
-            if (value <= _points.First().X)
-                return _points.First().Y;
-            if (value >= _points.Last().X)
-                return _points.Last().Y;
+            if (value <= Points.First().X)
+                return Points.First().Y;
+            if (value >= Points.Last().X)
+                return Points.Last().Y;
 
             double derivedValue = 0;
 
-            for (int i = 1; i < _points.Count; ++i) //TODO заменить на бинарный поиск
+            for (int i = 1; i < Points.Count; ++i) 
             {
-                if (value <= _points[i].X)
+                if (value <= Points[i].X)
                 {
-                    var currentPoint = _points[i];
-                    var previousPoint = _points[i-1];
-                    
-                    // derivedValue = _points[i-1].Y + 
-                    //          ( (_points[i].Y - _points[i-1].Y) * 
-                    //            (value - _points[i-1].X) )
-                    //          / (_points[i].X - _points[i-1].X);
-                    
+                    var currentPoint = Points[i];
+                    var previousPoint = Points[i-1];
+
                     derivedValue = previousPoint.Y + 
                                    ( (currentPoint.Y - previousPoint.Y) * 
                                      (value - previousPoint.X) )

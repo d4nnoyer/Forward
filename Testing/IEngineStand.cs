@@ -7,5 +7,7 @@ namespace DvsTesting.Testing
         void Enclose(Engine engine);
 
         void Release();
+
+        void OverheatTest();
     }
 }

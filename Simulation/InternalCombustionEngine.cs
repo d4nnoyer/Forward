@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using DvsTesting.Simulation;
 
-namespace DvsTesting.Testing
+namespace DvsTesting.Simulation
 {
     class InternalCombustionEngine : Engine
     {

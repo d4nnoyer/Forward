@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 
 namespace DvsTesting.Simulation
 {
     public abstract class Engine : IEngine
     {
-
-        
         protected double Volution;
 
         public double Temperature
@@ -19,11 +18,11 @@ namespace DvsTesting.Simulation
             get;
             set;
         }
-        
-        public double Momentum
+
+        protected double Momentum
             => EngineConfig.MomentumByVolution.GetPiecewiceLinearRelation(Volution);
-            
-        public double AccelerationWithNoLoad 
+
+        protected double AccelerationWithNoLoad 
             => Momentum/EngineConfig.Inertia;
 
         public double OverheatTemperature
@@ -41,20 +40,20 @@ namespace DvsTesting.Simulation
 
 
         //Нагрев от вращения коленвала
-        private double TempIncreaseOnWorkPerSecond ()
+        protected double TempIncreaseOnWorkPerSecond ()
             => (Momentum * EngineConfig.HeatDependencyOnMomentumCoef) +
                (Volution * Volution * EngineConfig.HeatDependencyOnVolutionCoef);
 
         //Стремлению к температурному балансу с окражющей средой
-        private double TempCompensationPerSecond (double envT)
+        protected double TempCompensationPerSecond (double envT)
             => EngineConfig.HeatTransferCoef * (envT - Temperature);
 
         //Подаём температуру среды как аргумент так как она тоже может изменяться
-        public void TemperatureChangePerSecond (double envT)
+        protected void TemperatureChangePerSecond (double envT)
             => Temperature += TempIncreaseOnWorkPerSecond() + TempCompensationPerSecond(envT);
         
         //Ускорение вращения коленвала
-        public void VolutionIncreasePerSecond ()
+        protected void VolutionIncreasePerSecond ()
             => Volution += AccelerationWithNoLoad;
         
         
@@ -76,19 +75,17 @@ namespace DvsTesting.Simulation
 
         public override string ToString()
         {
-            string valuesV = string.Empty;
-            string valuesMv = string.Empty;
+            string pairs = string.Empty;
 
-            // foreach (var dot in EngineInfo.MomentumByVolutionRelations)
-            // {
-            //     valuesV += dot.volution.ToString(CultureInfo.CurrentCulture) + ", ";
-            //     valuesMv += dot.momentum.ToString(CultureInfo.CurrentCulture) + ", ";
-            // }
+            foreach (var dot in EngineConfig.MomentumByVolution.Points)
+            {
+                pairs += "( " + dot.Y.ToString(CultureInfo.CurrentCulture) + ", " +
+                                dot.X.ToString(CultureInfo.CurrentCulture) + " ), ";
+            }
 
             return $"I = {EngineConfig.Inertia}\n" +
-                   "V    = { " + valuesV + "} \n" +
-                   "M(V) = { " + valuesMv + "} \n" +
-                   $"Tперегрева = {EngineConfig.OverheatTemp} \n" +
+                   "M(V), V  = { " + pairs + "} \n" +
+                   $"Tmax = {EngineConfig.OverheatTemp} \n" +
                    $"Hм = {EngineConfig.HeatDependencyOnMomentumCoef} \n" +
                    $"Hv = {EngineConfig.HeatDependencyOnVolutionCoef} \n" +
                    $"C = {EngineConfig.HeatTransferCoef}";

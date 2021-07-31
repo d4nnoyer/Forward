@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Simulation\Engine.cs" />
-    <Compile Include="Simulation\EngineConfig.cs" />
     <Compile Include="Simulation\EnvironmentState.cs" />
     <Compile Include="Simulation\IEngine.cs" />
     <Compile Include="Simulation\InternalCombustionEngine.cs" />

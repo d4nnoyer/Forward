@@ -9,8 +9,9 @@ namespace DvsTesting.UserInterface
     {
         static void Main()
         {
-            Engine testEngine = new InternalCombustionEngine(10, 110, 0.1, 0.01, 0.0001,
-                new List<(double, double)>()
+
+            Engine testEngine = new InternalCombustionEngine(inertia: 10, tmax: 110, c: 0.1, hm: 0.01, hv: 0.0001,
+                points: new List<(double, double)>()
                 {
                     (20, 0),
                     (75, 75), 
@@ -19,22 +20,21 @@ namespace DvsTesting.UserInterface
                     (75, 250),
                     (0, 300)
                 });
-            
-            EngineStand forwardStand = new EngineStand();
-            
-            forwardStand.Enclose(testEngine);
-            // EngineStandInterface.AskForEnvTemperature();
-            EnvironmentState.Temperature = 20;
-            forwardStand.OverheatTest();
-            Console.WriteLine(forwardStand.LastTestDuration);
-            
-            // EnvironmentState.Temperature = 23;
-            // EngineStand.PerformNewTest();
-            // Console.WriteLine(EngineStand.LastTestDuration);
-            
-            forwardStand.Release();
 
-            Console.WriteLine("Press any");
+            EngineStand forwardStand = new EngineStand();
+            forwardStand.Enclose(testEngine);
+            EngineStandInterface.Connect(forwardStand);
+
+            
+            EngineStandInterface.PrintEngineConfig();
+            EngineStandInterface.AskForEnvTemperature();
+            EngineStandInterface.RunOverheatTest();
+            EngineStandInterface.PrintOverheatTestResult();
+            
+            EngineStandInterface.Dispose();
+            forwardStand.Release();
+            
+            Console.WriteLine("\nРабота со стендом окончены. \nНажмите любую клавишу для продолжения.");
             Console.ReadKey();
         }
     }
