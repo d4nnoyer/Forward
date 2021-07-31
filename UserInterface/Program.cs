@@ -34,7 +34,7 @@ namespace DvsTesting.UserInterface
             EngineStandInterface.Dispose();
             forwardStand.Release();
             
-            Console.WriteLine("\nРабота со стендом окончены. \nНажмите любую клавишу для продолжения.");
+            Console.WriteLine("\nРабота со стендом окончена. \nНажмите любую клавишу для продолжения.");
             Console.ReadKey();
         }
     }
