@@ -7,17 +7,9 @@ namespace DvsTesting.Simulation
     {
         protected double Volution;
 
-        public double Temperature
-        {
-            get;
-            protected set;
-        }
+        public double Temperature { get; protected set; }
         
-        protected bool IsWorking
-        {
-            get;
-            set;
-        }
+        protected bool IsWorking { get; set; }
 
         protected double Momentum
             => EngineConfig.MomentumByVolution.GetPiecewiceLinearRelation(Volution);
@@ -28,6 +20,7 @@ namespace DvsTesting.Simulation
         public double OverheatTemperature
             => EngineConfig.OverheatTemp;
          
+        
         protected  ( double Inertia, 
                     double OverheatTemp,
                     double HeatTransferCoef,

@@ -10,8 +10,30 @@ namespace DvsTesting.Testing
         private uint _lastTestDuration;
         private double _previousEngineTemperature;
 
-        private static Engine _enclosedEngine;
+        private Engine _enclosedEngine;
+        
 
+        public bool LastTestReachedOverheat { get; private set; }
+
+        public double MaxReachedTemperature { get; private set; }
+        
+        private  bool IsOverheat
+            => (_enclosedEngine.Temperature >= _enclosedEngine.OverheatTemperature);
+
+        private double dT
+            => Math.Abs(_enclosedEngine.Temperature - _previousEngineTemperature);
+
+        private bool IsTemperatureIncreasing
+            => (dT >= 0.01);
+        
+        public  string LastTestDuration 
+            => _lastTestDuration.ToString(CultureInfo.CurrentCulture);
+
+        public string EngineConfig 
+            => _enclosedEngine.ToString();
+        
+        
+        
         public virtual  void Release()
             => _enclosedEngine = null;
 
@@ -24,18 +46,6 @@ namespace DvsTesting.Testing
             {
                 throw new Exception("В тестовый стенд не помещён ни один двигатель для тестирования.");
             }
-        }
-
-        public bool LastTestReachedOverheat
-        {
-            get;
-            private set;
-        }
-
-        public double MaxReachedTemperature
-        {
-            get;
-            private set;
         }
 
         public virtual void OverheatTest()
@@ -70,19 +80,6 @@ namespace DvsTesting.Testing
             _enclosedEngine.Stop();
         }
         
-        private  bool IsOverheat
-            => (_enclosedEngine.Temperature >= _enclosedEngine.OverheatTemperature);
 
-        private double dT
-            => Math.Abs(_enclosedEngine.Temperature - _previousEngineTemperature);
-
-        private bool IsTemperatureIncreasing
-            => (dT >= 0.01);
-        
-        public  string LastTestDuration 
-            => _lastTestDuration.ToString(CultureInfo.CurrentCulture);
-
-        public string EngineConfig() 
-            => _enclosedEngine.ToString();
     }
 }

@@ -21,6 +21,21 @@ namespace DvsTesting.UserInterface
             if (_controllingStand == null) throw new Exception("Не установлен контролируемый тестовый стенд.");
         }
         
+        
+        public static void PrintEngineConfig()
+        {
+            CheckInEngineSet();
+
+            Console.WriteLine(_controllingStand.EngineConfig);
+        }
+
+        public static void RunOverheatTest()
+        {
+            CheckInEngineSet();
+
+            _controllingStand.OverheatTest();
+        }
+
         public static void AskForEnvTemperature()
         {
             double number;
@@ -40,21 +55,8 @@ namespace DvsTesting.UserInterface
             
             EnvironmentState.Temperature =  number;
         }
-
-        public static void PrintEngineConfig()
-        {
-            CheckInEngineSet();
-
-            Console.WriteLine(_controllingStand.EngineConfig());
-        }
-
-        public static void RunOverheatTest()
-        {
-            CheckInEngineSet();
-
-            _controllingStand.OverheatTest();
-        }
-
+        
+        
         public static void PrintOverheatTestResult()
         {
             CheckInEngineSet();
