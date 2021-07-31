@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using DvsTesting.SimulationLogic;
-using DvsTesting.TestingLogic;
+using DvsTesting.Simulation;
+using DvsTesting.Testing;
 
-namespace DvsTesting.UserInterfaceLogic
+namespace DvsTesting.UserInterface
 {
     static class Program
     {

@@ -44,15 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimulationLogic\Engine.cs" />
-    <Compile Include="SimulationLogic\EngineConfig.cs" />
-    <Compile Include="SimulationLogic\EnvironmentState.cs" />
-    <Compile Include="SimulationLogic\IEngine.cs" />
-    <Compile Include="SimulationLogic\Interpolation.cs" />
-    <Compile Include="TestingLogic\EngineStand.cs" />
-    <Compile Include="TestingLogic\InternalCombustionEngine.cs" />
-    <Compile Include="UserInterfaceLogic\Program.cs" />
-    <Compile Include="UserInterfaceLogic\EngineStandInterface.cs" />
+    <Compile Include="Simulation\Engine.cs" />
+    <Compile Include="Simulation\EngineConfig.cs" />
+    <Compile Include="Simulation\EnvironmentState.cs" />
+    <Compile Include="Simulation\IEngine.cs" />
+    <Compile Include="Simulation\InternalCombustionEngine.cs" />
+    <Compile Include="Simulation\Interpolation.cs" />
+    <Compile Include="Testing\EngineStand.cs" />
+    <Compile Include="UserInterface\Program.cs" />
+    <Compile Include="UserInterface\EngineStandInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

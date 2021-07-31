@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 
-namespace DvsTesting.SimulationLogic
+namespace DvsTesting.Simulation
 {
     public abstract class Engine : IEngine
     {

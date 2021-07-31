@@ -1,4 +1,4 @@
-﻿namespace DvsTesting.UserInterfaceLogic
+﻿namespace DvsTesting.UserInterface
 {
     public static class EngineStandInterface
     {

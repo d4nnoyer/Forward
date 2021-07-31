@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using System.Runtime.InteropServices;
-using DvsTesting.SimulationLogic;
+using DvsTesting.Simulation;
 
-namespace DvsTesting.TestingLogic
+namespace DvsTesting.Testing
 {
     public static class EngineStand
     {
